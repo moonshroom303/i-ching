@@ -1,0 +1,139 @@
+{
+  "name": "wandlungen",
+  "productName": "Wandlungen",
+  "version": "1.0.0",
+  "description": "Freie Open-Source-App für das I Ging, das Buch der Wandlungen, nach Richard Wilhelm. Für macOS, Windows, Linux, Android, iPhone und iPad.",
+  "main": "electron/main.js",
+  "license": "MIT",
+  "homepage": "https://github.com/moonshroom303/i-ching",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moonshroom303/i-ching.git"
+  },
+  "private": true,
+  "author": {
+    "name": "moonshroom303",
+    "email": "moonshroom303@users.noreply.github.com"
+  },
+  "keywords": [
+    "i-ching",
+    "i-ging",
+    "yijing",
+    "oracle",
+    "richard-wilhelm",
+    "electron",
+    "capacitor",
+    "pwa"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "dist": "electron-builder --publish never",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:linux": "electron-builder --linux --publish never",
+    "build:data": "node scripts/build-data.mjs",
+    "build:web": "node scripts/build-web.mjs",
+    "cap:sync": "cap sync",
+    "android": "cap sync android && cap open android",
+    "ios": "cap sync ios && cap open ios"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/cli": "^8.6.0",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/ios": "^8.6.0",
+    "electron": "^45.2.3",
+    "electron-builder": "^26.0.20"
+  },
+  "build": {
+    "appId": "io.github.wandlungen.app",
+    "productName": "Wandlungen",
+    "copyright": "MIT License. I Ging nach Richard Wilhelm (1924), gemeinfrei.",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "app/**/*",
+      "electron/**/*",
+      "package.json",
+      "LICENSE",
+      "NOTICE.md"
+    ],
+    "afterPack": "scripts/after-pack.cjs",
+    "mac": {
+      "category": "public.app-category.lifestyle",
+      "identity": null,
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
+    },
+    "dmg": {
+      "title": "${productName} ${version}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "artifactName": "${productName}-${version}-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-Portable.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Education",
+      "synopsis": "I Ging, das Buch der Wandlungen",
+      "description": "Freie Open-Source-App für das I Ging nach Richard Wilhelm: Orakel, Tages-, Namens-, Geburtstags- und Liebesorakel, alle 64 Zeichen mit Kommentar und ein privates Journal.",
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
+    }
+  }
+}

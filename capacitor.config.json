@@ -1,0 +1,20 @@
+{
+  "appId": "io.github.wandlungen.app",
+  "appName": "Wandlungen",
+  "webDir": "app",
+  "backgroundColor": "#edf1ea",
+  "loggingBehavior": "none",
+  "ios": {
+    "contentInset": "never",
+    "scheme": "Wandlungen"
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover"
+    }
+  }
+}
