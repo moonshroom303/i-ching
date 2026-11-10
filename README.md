@@ -35,9 +35,15 @@ Fertige Dateien liegen unter [**Releases**](https://github.com/moonshroom303/i-c
 | Android | `Wandlungen-…-android.apk` | Installation aus dieser Quelle einmal erlauben |
 | iPhone, iPad | Web-App oder `Wandlungen-…-ios-unsigned.ipa` | siehe „Android, iPhone und iPad“ |
 
-**macOS: erster Start.** Die App ist nicht bei Apple notarisiert. Nach dem ersten Öffnungsversuch gehst du in
-*Systemeinstellungen → Datenschutz & Sicherheit* und klickst bei Wandlungen auf **„Dennoch öffnen“**.
-Alternativ im Terminal: `xattr -dr com.apple.quarantine /Applications/Wandlungen.app`
+**macOS: erster Start.** Die App ist nicht bei Apple notarisiert. macOS meldet deshalb nach dem Download
+„Wandlungen ist beschädigt und kann nicht geöffnet werden“. Die App ist nicht kaputt, macOS blockiert nur Apps
+ohne Apple-Zertifikat. Nach dem Ziehen in *Programme* einmal im Terminal ausführen:
+
+```bash
+xattr -cr /Applications/Wandlungen.app
+```
+
+Danach startet die App normal.
 
 ### Android, iPhone und iPad
 
@@ -169,5 +175,5 @@ Phones and tablets: the `pages.yml` workflow publishes the web version on GitHub
 Android APK (signed AAB/APK when the `ANDROID_*` secrets are set) and an unsigned iOS IPA for sideloading with your own
 Apple ID. App Store and Play Store publishing need the respective developer accounts.
 
-macOS builds are not notarised: after the first launch attempt, open *System Settings → Privacy & Security* and click
-**Open Anyway**. Source code: MIT. Texts: public domain / CC0. Fonts: OFL. See [NOTICE.md](NOTICE.md).
+macOS builds are not notarised, so macOS reports the app as "damaged". After moving it to Applications, run
+`xattr -cr /Applications/Wandlungen.app` once. Source code: MIT. Texts: public domain / CC0. Fonts: OFL. See [NOTICE.md](NOTICE.md).
